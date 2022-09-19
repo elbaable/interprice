@@ -52,6 +52,7 @@ export default {
           };
           return data;
         });
+        console.log(123)
       this.filteredData = filterData;
   },
   data() {
@@ -63,6 +64,23 @@ export default {
       field: "Spread",
       filteredData: []
     };
+  },
+  watch: {
+    filter: function() {
+      var filterData = date["Items"].filter(item => item.Company.toLowerCase().includes(this.filter.toLowerCase()))
+        .map((item, index) => {
+          var data = {
+            id: index,
+            name: item.Company,
+            date: item.DateSent,
+            preferred: item.Preferred,
+            quote: item.Quote?.filter(e => e.Currency == this.currency)
+          };
+          return data;
+        });
+        console.log(filterData)
+      this.filteredData = filterData;
+    }
   },
   methods: {
     toggle(id) {

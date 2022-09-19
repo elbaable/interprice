@@ -189,6 +189,9 @@ export default {
             handler: function () {
                 this.convertCompanyInfo()
             }
+        },
+        data: function() {
+            this.companyData = this.data;
         }
     },
     created() {
